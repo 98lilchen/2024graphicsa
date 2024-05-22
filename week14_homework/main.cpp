@@ -22,11 +22,13 @@ int myTexture(char * filename)
 #include "glm.h"
 GLMmodel * pmodel = NULL;
 GLMmodel * righthand = NULL;
+GLMmodel * rightleg = NULL;
+GLMmodel * rightupper = NULL;
+GLMmodel * rightMhand = NULL;
+GLMmodel * leftleg = NULL;
 GLMmodel * lefthand = NULL;
 GLMmodel * leftMhand = NULL;
 GLMmodel * leftupper = NULL;
-GLMmodel * rightupper = NULL;
-GLMmodel * rightMhand = NULL;
 GLMmodel * head = NULL;
 GLMmodel * body = NULL;
 void drawBody(void)
@@ -80,6 +82,97 @@ void drawRightHand(void)
 
     glmDraw(righthand, GLM_SMOOTH | GLM_TEXTURE);
 }
+
+void drawRightLeg(void)
+{
+    if (!rightleg) {
+	rightleg = glmReadOBJ("data/rightleg.obj");
+	if (!rightleg) exit(0);
+	glmUnitize(rightleg);
+	glmFacetNormals(rightleg);
+	glmVertexNormals(rightleg, 90.0);
+    }
+
+    glmDraw(rightleg, GLM_SMOOTH | GLM_TEXTURE);
+}
+
+void drawRightMHand(void)
+{
+    if (!rightMhand) {
+	rightMhand = glmReadOBJ("data/rightMhand.obj");
+	if (!rightMhand) exit(0);
+	glmUnitize(rightMhand);
+	glmFacetNormals(rightMhand);
+	glmVertexNormals(rightMhand, 90.0);
+    }
+
+    glmDraw(rightMhand, GLM_SMOOTH | GLM_TEXTURE);
+}
+
+void drawRightUpper(void)
+{
+    if (!rightupper) {
+	rightupper = glmReadOBJ("data/rightupper.obj");
+	if (!rightupper) exit(0);
+	glmUnitize(rightupper);
+	glmFacetNormals(rightupper);
+	glmVertexNormals(rightupper, 90.0);
+    }
+
+    glmDraw(rightupper, GLM_SMOOTH | GLM_TEXTURE);
+}
+
+void drawLeftLeg(void)
+{
+    if (!leftleg) {
+	leftleg = glmReadOBJ("data/leftleg.obj");
+	if (!leftleg) exit(0);
+	glmUnitize(leftleg);
+	glmFacetNormals(leftleg);
+	glmVertexNormals(leftleg, 90.0);
+    }
+
+    glmDraw(leftleg, GLM_SMOOTH | GLM_TEXTURE);
+}
+
+void drawLeftMHand(void)
+{
+    if (!leftMhand) {
+	leftMhand = glmReadOBJ("data/leftMhand.obj");
+	if (!leftMhand) exit(0);
+	glmUnitize(leftMhand);
+	glmFacetNormals(leftMhand);
+	glmVertexNormals(leftMhand, 90.0);
+    }
+
+    glmDraw(leftMhand, GLM_SMOOTH | GLM_TEXTURE);
+}
+
+void drawLeftUpper(void)
+{
+    if (!leftupper) {
+	leftupper = glmReadOBJ("data/leftupper.obj");
+	if (!leftupper) exit(0);
+	glmUnitize(leftupper);
+	glmFacetNormals(leftupper);
+	glmVertexNormals(leftupper, 90.0);
+    }
+
+    glmDraw(leftupper, GLM_SMOOTH | GLM_TEXTURE);
+}
+
+void drawHead(void)
+{
+    if (!head) {
+	head = glmReadOBJ("data/head.obj");
+	if (!head) exit(0);
+	glmUnitize(head);
+	glmFacetNormals(head);
+	glmVertexNormals(head, 90.0);
+    }
+
+    glmDraw(head, GLM_SMOOTH | GLM_TEXTURE);
+}
 void myBody(){
     glPushMatrix();
     glColor3f(1,0,0);
@@ -128,6 +221,12 @@ void keyboard(unsigned char key, int x, int y)
     if(key=='1') angleID = 1;
     if(key=='2') angleID = 2;
     if(key=='3') angleID = 3;
+    if(key=='4') angleID = 4;
+    if(key=='5') angleID = 5;
+    if(key=='6') angleID = 6;
+    if(key=='7') angleID = 7;
+    if(key=='8') angleID = 8;
+    if(key=='9') angleID = 9;
 }
 void display()
 {
@@ -147,6 +246,12 @@ void display()
         glTranslatef(-0.1,0,0);
         glRotatef(angle[1],0,0,1);
         glRotatef(angle[2],1,0,0);
+        glRotatef(angle[4],0,1,0);
+        glRotatef(angle[5],1,0,0);
+        glRotatef(angle[6],1,0,0);
+        glRotatef(angle[7],1,0,0);
+        glRotatef(angle[8],1,0,0);
+        glRotatef(angle[9],1,0,0);
         glTranslatef(0,-0.07,0);
         drawRightHand();
         glPushMatrix();
