@@ -25,10 +25,10 @@ GLMmodel * righthand = NULL;
 GLMmodel * rightleg = NULL;
 GLMmodel * rightupper = NULL;
 GLMmodel * rightMhand = NULL;
-GLMmodel * leftleg = NULL;
 GLMmodel * lefthand = NULL;
-GLMmodel * leftMhand = NULL;
+GLMmodel * leftleg = NULL;
 GLMmodel * leftupper = NULL;
+GLMmodel * leftMhand = NULL;
 GLMmodel * head = NULL;
 GLMmodel * body = NULL;
 void drawBody(void)
@@ -236,30 +236,81 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glDisable(GL_TEXTURE_2D);
     glPushMatrix();
-    glRotatef(angle[0],0,1,0);
-    drawBody();
-    ///glutSolidSphere(0.1,30,30);
-    glEnable(GL_TEXTURE_2D);
-    glColor3f(1,1,1);
+        glTranslatef(0.1,0.5,1);
+        glRotatef(angle[0],0,0,1);
+        glTranslatef(0,0,0);
+        drawHead();
 
-    glPushMatrix();
-        glTranslatef(-0.1,0,0);
-        glRotatef(angle[1],0,0,1);
-        glRotatef(angle[2],1,0,0);
-        glRotatef(angle[4],0,1,0);
-        glRotatef(angle[5],1,0,0);
-        glRotatef(angle[6],1,0,0);
-        glRotatef(angle[7],1,0,0);
-        glRotatef(angle[8],1,0,0);
-        glRotatef(angle[9],1,0,0);
-        glTranslatef(0,-0.07,0);
-        drawRightHand();
         glPushMatrix();
-            glTranslatef(-0.02,-0.09,0);
-            glRotatef(angle[3],1,0,0);
-            glTranslatef(0,-0.21,0);
-            drawLeftHand();
-        glPopMatrix();
+        glTranslatef(0,-0.5,0);
+        glRotatef(angle[1],0,0,1);
+        glTranslatef(0,0,0);
+        drawBody();
+
+        glPushMatrix();
+        glTranslatef(0.5,0.18,0);
+        glRotatef(angle[2],0,0,1);
+        glTranslatef(0,0,0);
+        drawRightUpper();
+
+        glPushMatrix();
+        glTranslatef(-1,0.1,0);
+        glRotatef(angle[3],0,0,1);
+        glTranslatef(0,0,0);
+        drawLeftUpper();
+
+        glPushMatrix();
+        glTranslatef(1.2,-0.4,0);
+        glRotatef(angle[4],0,0,1);
+        glTranslatef(0,0,0);
+        drawRightMHand();
+
+        glPushMatrix();
+        glTranslatef(-1.4,0.1,0);
+        glRotatef(angle[5],0,0,1);
+        glTranslatef(0,0,0);
+        drawLeftMHand();
+
+        glPushMatrix();
+        glTranslatef(1.6,-0.7,0);
+        glRotatef(angle[6],0,0,1);
+        glTranslatef(0,0,0);
+        drawRightHand();
+
+        glPushMatrix();
+        glTranslatef(-1.6,0,0);
+        glRotatef(angle[7],0,0,1);
+        glTranslatef(0,0,0);
+        drawLeftHand();
+
+        glPushMatrix();
+        glTranslatef(0.4,-0.5,0);
+        glRotatef(angle[8],0,0,1);
+        glTranslatef(0,0,0);
+        drawLeftLeg();
+
+        glPushMatrix();
+        glTranslatef(0.5,-0.4,0);
+        glRotatef(angle[9],0,0,1);
+        glTranslatef(0,0,0);
+        drawRightLeg();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
+    glPopMatrix();
+
     glPopMatrix();
 
     glPopMatrix();
