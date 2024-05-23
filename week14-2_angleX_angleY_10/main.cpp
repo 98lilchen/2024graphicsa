@@ -188,14 +188,12 @@ void display()
         glTranslatef(-0.1,0,0);
         glRotatef(angleX[1],1,0,0);
         glRotatef(angleY[1],0,1,0);
-        glRotatef(angleX[2],1,0,0);
-        glRotatef(angleY[2],0,1,0);
         glTranslatef(0,-0.07,0);
         drawUpperA();
         glPushMatrix();
             glTranslatef(-0.02,-0.09,0);
-            glRotatef(angleX[3],1,0,0);
-            glRotatef(angleY[3],0,1,0);
+            glRotatef(angleX[2],1,0,0);
+            glRotatef(angleY[2],0,1,0);
             glTranslatef(0,-0.21,0);
             drawLowerA();
         glPopMatrix();
