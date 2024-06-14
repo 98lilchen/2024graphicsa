@@ -318,7 +318,7 @@ void mouse(int button, int state, int x, int y)
 }
 float oldAngleX[10] = {}, newAngleX[10] = {};
 float oldAngleY[10] = {}, newAngleY[10] = {};
-void timer(int t)
+/*void timer(int t)
 {
     glutTimerFunc(50,timer,t+1);
     if(t%20==0)
@@ -379,7 +379,7 @@ void keyboard(unsigned char key, int x, int y)
     if(key=='7') angleID = 7;
     if(key=='8') angleID = 8;
     if(key=='9') angleID = 9;
-}
+}*/
 void display()
 {
 
@@ -387,9 +387,26 @@ void display()
     glDisable(GL_TEXTURE_2D);
     glutSolidSphere(0.02,30,30);
 
-    glPushMatrix();
         drawbody();
-    glPopMatrix();
+        glPushMatrix();
+        glTranslatef(-0.013, -0.133,0);glTranslatef(teapotX, teapotY,0);
+
+        glTranslatef(0.013, -0.133,0);
+        drawlefthand();
+            glPushMatrix();
+            glTranslatef(-0.013, 0.353,0);
+
+            glTranslatef(0.007, -0.100,0);
+            drawleftmhand();
+                glPushMatrix();
+                    glTranslatef(0.067, 0.347,0);
+
+                    glTranslatef(-0.047, -0.107,0);
+                    drawleftupperhand();
+                glPopMatrix();
+            glPopMatrix();
+        glPopMatrix();
+
 
     glutSwapBuffers();
 }
@@ -414,7 +431,7 @@ int main(int argc, char*argv[])
     glutIdleFunc(display); ///加這行, 讓它轉動
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
-    glutKeyboardFunc(keyboard);
+    ///glutKeyboardFunc(keyboard);
     ///glutTimerFunc(0,timer,0);
 
     ///myTexture("data/Diffuse.jpg");
