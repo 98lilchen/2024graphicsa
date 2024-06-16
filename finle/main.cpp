@@ -3,6 +3,8 @@
 #include <opencv/highgui.h> ///使用 OpenCV 2.1 比較簡單, 只要用 High GUI 即可
 #include <opencv/cv.h>
 #include <GL/glut.h>
+GLUquadric * quad = NULL; ///todo: 要有一顆指標
+int id1, id2;
 int myTexture(char * filename)
 {
     IplImage * img = cvLoadImage(filename); ///OpenCV讀圖
@@ -305,7 +307,8 @@ void drawwaistupper(void)
 
 ///float angle = 0, da=1; ///加這行, 讓它轉動
 ///float angle[20] = {};
-float angle[20]={};
+float angleX[10]={};
+float angleY[10]={};
 int angleID = 0;
 int oldX = 0, oldY = 0;
 #include <stdio.h>
@@ -313,7 +316,13 @@ FILE * fin = NULL;
 FILE * fout = NULL;
 void motion(int x,int y)
 {
-    if(1){
+    angleX[angleID] += y-oldY;
+    angleY[angleID] -= x-oldX;
+    oldX = x;
+    oldY = y;
+    glutPostRedisplay();
+
+    /*if(1){
         teapotX += (x- oldX)/150.0;
         teapotY -= (y- oldY)/150.0;
         printf("glTranslatef(%.3f, %.3f,0);\n",teapotX,teapotY);
@@ -322,7 +331,7 @@ void motion(int x,int y)
     }
     oldX = x;
     oldY = y;
-    glutPostRedisplay();
+    glutPostRedisplay();*/
 
 }
 void mouse(int button, int state, int x, int y)
@@ -331,7 +340,32 @@ void mouse(int button, int state, int x, int y)
     oldY = y;
 }
 
-/*
+float oldAngleX[10] = {}, newAngleX[10] = {};
+float oldAngleY[10] = {}, newAngleY[10] = {};
+void timer(int t)
+{
+    glutTimerFunc(50,timer,t+1);
+    if(t%20==0)
+    {
+        if(fin==NULL) fin = fopen("angle.txt","r");
+        for(int i=0;i<10;i++)
+        {
+            oldAngleX[i] = newAngleX[i];
+            oldAngleY[i] = newAngleY[i];
+            fscanf(fin, "%f", & newAngleX[i] );
+            fscanf(fin, "%f", & newAngleY[i] );
+        }
+    }
+    float alpha = (t%20) / 20.0;
+    for(int i=0;i<10;i++)
+    {
+        angleX[i] = newAngleX[i]*alpha + oldAngleX[i]*(1-alpha);
+        angleY[i] = newAngleY[i]*alpha + oldAngleY[i]*(1-alpha);
+    }
+    glutPostRedisplay();
+}
+
+
 void keyboard(unsigned char key, int x, int y)
 {
     if(key=='p')
@@ -371,13 +405,28 @@ void keyboard(unsigned char key, int x, int y)
     if(key=='7') angleID = 7;
     if(key=='8') angleID = 8;
     if(key=='9') angleID = 9;
-}*/
+}
 void display()
 {
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    glDisable(GL_TEXTURE_2D);
-    glutSolidSphere(0.02,30,30);
+    glEnable(GL_DEPTH_TEST);
+    glBindTexture(GL_TEXTURE_2D,id2);
+    glBegin(GL_POLYGON);
+        glTexCoord2f(0,0); glVertex2f(-1,+1);
+        glTexCoord2f(0,1); glVertex2f(-1,-1);
+        glTexCoord2f(1,1); glVertex2f(+1,-1);
+        glTexCoord2f(1,0); glVertex2f(+1,+1);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D,id1);
+    glPushMatrix();
+        glRotatef(90, 1, 0, 0);
+        ///glRotatef(angle++, 0, 0, 1);
+        gluSphere(quad, 0.5, 30, 30); ///glutSolidTeapot( 0.3 );
+    glPopMatrix();
+    glutSwapBuffers();
+    ///glDisable(GL_TEXTURE_2D);
+    ///glutSolidSphere(0.02,30,30);
 
     drawbody();
     glPushMatrix();
@@ -525,9 +574,13 @@ int main(int argc, char*argv[])
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
     ///glutKeyboardFunc(keyboard);
-    ///glutTimerFunc(0,timer,0);
+    id1 = myTexture("c:/bone.jpg");
+    id2 = myTexture("c:/p1.jpg");
+    quad = gluNewQuadric(); ///todo:把這顆指標,指好
+    gluQuadricTexture(quad, 1);
 
-    ///myTexture("data/Diffuse.jpg");
+
+    ///myTexture("data/Medieval_bone0.jpg");
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
