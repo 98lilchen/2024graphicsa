@@ -41,6 +41,7 @@ GLMmodel * rightupperhand = NULL;
 GLMmodel * rightupperleg = NULL;
 GLMmodel * waist = NULL;
 GLMmodel * waistlower = NULL;
+GLMmodel * waistupper = NULL;
 
 void drawbody(void)
 {
@@ -289,6 +290,19 @@ void drawwaistlower(void)
     glmDraw(waistlower, GLM_SMOOTH | GLM_TEXTURE);
 }
 
+void drawwaistupper(void)
+{
+    if (!waistupper) {
+	waistupper = glmReadOBJ("data/waistupper.obj");
+	if (!waistupper) exit(0);
+	glmUnitize(waistupper);
+	glmFacetNormals(waistupper);
+	glmVertexNormals(waistupper, 90.0);
+    }
+
+    glmDraw(waistupper, GLM_SMOOTH | GLM_TEXTURE);
+}
+
 ///float angle = 0, da=1; ///加這行, 讓它轉動
 ///float angle[20] = {};
 float angle[20]={};
@@ -316,30 +330,8 @@ void mouse(int button, int state, int x, int y)
     oldX = x;
     oldY = y;
 }
-float oldAngleX[10] = {}, newAngleX[10] = {};
-float oldAngleY[10] = {}, newAngleY[10] = {};
-/*void timer(int t)
-{
-    glutTimerFunc(50,timer,t+1);
-    if(t%20==0)
-    {
-        if(fin==NULL) fin = fopen("angle.txt","r");
-        for(int i=0;i<10;i++)
-        {
-            oldAngleX[i] = newAngleX[i];
-            oldAngleY[i] = newAngleY[i];
-            fscanf(fin, "%f", & newAngleX[i] );
-            fscanf(fin, "%f", & newAngleY[i] );
-        }
-    }
-    float alpha = (t%20) / 20.0;
-    for(int i=0;i<10;i++)
-    {
-        angleX[i] = newAngleX[i]*alpha + oldAngleX[i]*(1-alpha);
-        angleY[i] = newAngleY[i]*alpha + oldAngleY[i]*(1-alpha);
-    }
-    glutPostRedisplay();
-}
+
+/*
 void keyboard(unsigned char key, int x, int y)
 {
     if(key=='p')
@@ -387,26 +379,127 @@ void display()
     glDisable(GL_TEXTURE_2D);
     glutSolidSphere(0.02,30,30);
 
-        drawbody();
+    drawbody();
+    glPushMatrix();
+    glTranslatef(-0.147, 0.147,0);
+    ///r
+    glTranslatef(-0.040, -0.120,0);
+    drawleftupperhand();
         glPushMatrix();
-        glTranslatef(-0.013, -0.133,0);glTranslatef(teapotX, teapotY,0);
-
-        glTranslatef(0.013, -0.133,0);
-        drawlefthand();
-            glPushMatrix();
-            glTranslatef(-0.013, 0.353,0);
-
-            glTranslatef(0.007, -0.100,0);
+            glTranslatef(-0.027, -0.100,0);
+            ///r
+            glTranslatef(0.000, -0.113,0);
             drawleftmhand();
-                glPushMatrix();
-                    glTranslatef(0.067, 0.347,0);
-
-                    glTranslatef(-0.047, -0.107,0);
-                    drawleftupperhand();
-                glPopMatrix();
+            glPushMatrix();
+                glTranslatef(-0.007, -0.133,0);
+                ///r
+                glTranslatef(0.013, -0.120,0);
+                drawlefthand();
             glPopMatrix();
         glPopMatrix();
+    glPopMatrix();
 
+    glPushMatrix();
+    glTranslatef(0.127, 0.160,0);
+    ///r
+    glTranslatef(0.040, -0.127,0);
+    drawrightupperhand();
+        glPushMatrix();
+        glTranslatef(0.040, -0.120,0);
+        ///r
+        glTranslatef(-0.007, -0.100,0);
+        drawrightmhand();
+            glPushMatrix();
+            glTranslatef(0.013, -0.140,0);
+            ///r
+            glTranslatef(-0.000, -0.107,0);
+            drawrighthand();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.100, -0.220,0);
+    ///r
+    glTranslatef(0.007, -0.273,0);
+    drawleftupperleg();
+        glPushMatrix();
+        glTranslatef(-0.013, -0.247,0);
+        ///r
+        glTranslatef(0.000, -0.467,0);
+        drawleftmleg();
+            glPushMatrix();
+            glTranslatef(0.007, -0.287,0);
+            ///r
+            glTranslatef(-0.027, -0.233,0);
+            drawleftleg();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.087, -0.220,0);
+    ///r
+    glTranslatef(-0.020, -0.287,0);
+    drawrightupperleg();
+        glPushMatrix();
+        glTranslatef(-0.000, -0.247,0);
+        ///r
+        glTranslatef(-0.013, -0.700,0);
+        drawrightmleg();
+            glPushMatrix();
+            glTranslatef(-0.033, -0.460,0);
+            ///r
+            glTranslatef(0.093, -0.287,0);
+            drawrightleg();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.007, 0.067,0);
+    ///r
+    glTranslatef(0.000, 0.033,0);
+    drawheadlower();
+        glPushMatrix();
+        glTranslatef(-0.007, 0.007,0);
+        ///r
+        glTranslatef(0.007, 0.080,0);
+        drawheadm();
+            glPushMatrix();
+            glTranslatef(0.000, 0.173,0);
+            ///r
+            glTranslatef(-0.000, -0.047,0);
+            drawheadupper();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.007, 0.160,0);
+    ///r
+    glTranslatef(0.020, -0.107,0);
+    drawbreast();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.000, 0.247,0);
+    ///r
+    glTranslatef(0.007, -0.260,0);
+    drawwaistupper();
+        glPushMatrix();
+        glTranslatef(-0.000, -0.207,0);
+        ///r
+        glTranslatef(0.013, -0.113,0);
+        drawwaist();
+            glPushMatrix();
+            glTranslatef(-0.013, -0.013,0);
+            ///r
+            glTranslatef(0.000, -0.053,0);
+            drawwaistlower();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
 
     glutSwapBuffers();
 }
