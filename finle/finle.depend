@@ -32,7 +32,7 @@
 	"glm.h"
 	<stdio.h>
 
-1718508384 source:c:\users\joy\desktop\finle\glm.cpp
+1718626352 source:c:\users\joy\desktop\finle\glm.cpp
 	<math.h>
 	<stdio.h>
 	<stdlib.h>
@@ -40,10 +40,10 @@
 	<assert.h>
 	"glm.h"
 
-1718508385 c:\users\joy\desktop\finle\glm.h
+1718626352 c:\users\joy\desktop\finle\glm.h
 	<GL/glut.h>
 
-1718513281 source:c:\users\joy\desktop\finle\main.cpp
+1718627361 source:c:\users\joy\desktop\finle\main.cpp
 	<opencv/highgui.h>
 	<opencv/cv.h>
 	<GL/glut.h>

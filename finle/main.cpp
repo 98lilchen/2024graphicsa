@@ -3,9 +3,9 @@
 #include <opencv/highgui.h> ///使用 OpenCV 2.1 比較簡單, 只要用 High GUI 即可
 #include <opencv/cv.h>
 #include <GL/glut.h>
-///#include "CMP3_MCI.h"
-///CMP3_MCI myMP3;
-GLuint id1, id2;
+#include "CMP3_MCI.h"
+CMP3_MCI myMP3;
+int id1, id2;
 int myTexture(char * filename)
 {
     IplImage * img = cvLoadImage(filename); ///OpenCV讀圖
@@ -317,8 +317,8 @@ FILE * fin = NULL;
 FILE * fout = NULL;
 void motion(int x,int y)
 {
-    angleX[angleID] += y-oldY;
-    angleY[angleID] -= x-oldX;
+    angleY[angleID] += y-oldY;
+    angleX[angleID] += x-oldX;
     oldX = x;
     oldY = y;
     glutPostRedisplay();
@@ -424,21 +424,21 @@ void display()
     glutSolidSphere(0.02,30,30);
 
 
-    glPushMatrix();
+    /*glPushMatrix();
     glTranslatef(-0.147, 0.147,0);
     glRotatef(angleX[1],0,1,0);
     glTranslatef(-0.040, -0.120,0);
-    ///drawleftupperhand();
+    drawleftupperhand();
         glPushMatrix();
             glTranslatef(-0.027, -0.100,0);
             glRotatef(angleX[2],0,1,0);
             glTranslatef(0.000, -0.113,0);
-            ///drawleftmhand();
+            drawleftmhand();
             glPushMatrix();
                 glTranslatef(-0.007, -0.133,0);
                 glRotatef(angleX[3],0,1,0);
                 glTranslatef(0.013, -0.120,0);
-                ///drawlefthand();
+                drawlefthand();
             glPopMatrix();
         glPopMatrix();
     glPopMatrix();
@@ -447,56 +447,58 @@ void display()
     glTranslatef(0.127, 0.160,0);
     glRotatef(angleX[4],0,1,0);
     glTranslatef(0.040, -0.127,0);
-    ///drawrightupperhand();
+    drawrightupperhand();
         glPushMatrix();
         glTranslatef(0.040, -0.120,0);
         glRotatef(angleX[5],0,1,0);
         glTranslatef(-0.007, -0.100,0);
-        ///drawrightmhand();
+        drawrightmhand();
             glPushMatrix();
             glTranslatef(0.013, -0.140,0);
             glRotatef(angleX[6],0,1,0);
             glTranslatef(-0.000, -0.107,0);
-            ///drawrighthand();
+            drawrighthand();
             glPopMatrix();
         glPopMatrix();
-    glPopMatrix();
+    glPopMatrix();*/
 
     glPushMatrix();
     glTranslatef(-0.100, -0.220,0);
     glScalef(0.7,0.7,0.7);
     glRotatef(angleX[7],0,1,0);
     glTranslatef(0.007, -0.273,0);
-    ///drawleftupperleg();
+    drawleftupperleg();
         glPushMatrix();
         glTranslatef(-0.013, -0.247,0);
-        glScalef(0.7,0.7,0.7);
+        glScalef(0.5,0.5,0.5);
         glRotatef(angleX[8],0,1,0);
         glTranslatef(0.000, -0.467,0);
-        ///drawleftmleg();
+        drawleftmleg();
             glPushMatrix();
             glTranslatef(0.007, -0.287,0);
-            glScalef(0.7,0.7,0.7);
+            glScalef(4,4,4);
             glRotatef(angleX[9],0,1,0);
             glTranslatef(-0.027, -0.233,0);
-            ///drawleftleg();
+            drawleftleg();
             glPopMatrix();
         glPopMatrix();
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.087, -0.220,0);
+    glScalef(0.7,0.7,0.7);
     glRotatef(angleY[0],0,1,0);
     glTranslatef(-0.020, -0.287,0);
-    ///drawrightupperleg();
+    drawrightupperleg();
         glPushMatrix();
         glTranslatef(-0.000, -0.247,0);
+        glScalef(0.5,0.5,0.5);
         glRotatef(angleY[1],0,1,0);
         glTranslatef(-0.013, -0.700,0);
-        ///drawrightmleg();
+        drawrightmleg();
             glPushMatrix();
             glTranslatef(-0.033, -0.460,0);
-            glScalef(1,1,1);
+            glScalef(4,4,4);
             glRotatef(angleY[2],0,1,0);
             glTranslatef(0.093, -0.287,0);
             drawrightleg();
@@ -504,21 +506,21 @@ void display()
         glPopMatrix();
     glPopMatrix();
 
-    glPushMatrix();
+    /*glPushMatrix();
     glTranslatef(0.007, 0.067,0);
     glRotatef(angleY[3],0,1,0);
     glTranslatef(0.000, 0.033,0);
-    ///drawheadlower();
+    drawheadlower();
         glPushMatrix();
         glTranslatef(-0.007, 0.007,0);
         glRotatef(angleY[4],0,1,0);
         glTranslatef(0.007, 0.080,0);
-        ///drawheadm();
+        drawheadm();
             glPushMatrix();
             glTranslatef(0.000, 0.173,0);
             glRotatef(angleY[5],0,1,0);
             glTranslatef(-0.000, -0.047,0);
-            ///drawheadupper();
+            drawheadupper();
             glPopMatrix();
         glPopMatrix();
     glPopMatrix();
@@ -527,27 +529,27 @@ void display()
     glTranslatef(-0.007, 0.160,0);
     glRotatef(angleY[6],0,1,0);
     glTranslatef(0.020, -0.107,0);
-    ///drawbreast();
+    drawbreast();
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(-0.000, 0.247,0);
     glRotatef(angleY[7],0,1,0);
     glTranslatef(0.007, -0.260,0);
-    ///drawwaistupper();
+    drawwaistupper();
         glPushMatrix();
         glTranslatef(-0.000, -0.207,0);
         glRotatef(angleY[8],0,1,0);
         glTranslatef(0.013, -0.113,0);
-        ///drawwaist();
+        drawwaist();
             glPushMatrix();
             glTranslatef(-0.013, -0.013,0);
             glRotatef(angleY[9],0,1,0);
             glTranslatef(0.000, -0.053,0);
-            ///drawwaistlower();
+            drawwaistlower();
             glPopMatrix();
         glPopMatrix();
-    glPopMatrix();
+    glPopMatrix();*/
 
     glutSwapBuffers();
 }
@@ -567,14 +569,16 @@ int main(int argc, char*argv[])
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH);
-    glutCreateWindow("week13-1");
+    glutCreateWindow("finle");
+    myMP3.Load("YNW.mp3");
+    myMP3.Play();
     glutDisplayFunc(display);
     glutIdleFunc(display); ///加這行, 讓它轉動
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
     glutKeyboardFunc(keyboard);
-    ///id1 = myTexture("c:/bone.jpg");
-    ///id2 = myTexture("c:/p1.jpg");
+    id1 = myTexture("C:/bone.jpg");
+    id2 = myTexture("C:/p1.jpg");
 
 
     ///myTexture("data/Medieval_bone0.jpg");
