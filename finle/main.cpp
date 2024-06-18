@@ -405,28 +405,27 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glBindTexture(GL_TEXTURE_2D,id2);
     glBegin(GL_POLYGON);
-        glTexCoord2f(0,0); glVertex2f(-1,+1);
-        glTexCoord2f(0,1); glVertex2f(-1,-1);
-        glTexCoord2f(1,1); glVertex2f(+1,-1);
-        glTexCoord2f(1,0); glVertex2f(+1,+1);
+        glTexCoord2f(0,0); glVertex3f(-1,+1,+0.6);
+        glTexCoord2f(0,1); glVertex3f(-1,-1,+0.6);
+        glTexCoord2f(1,1); glVertex3f(+1,-1,+0.6);
+        glTexCoord2f(1,0); glVertex3f(+1,+1,+0.6);
     glEnd();
     glBindTexture(GL_TEXTURE_2D,id1);
     glPushMatrix();
         glRotatef(angleX[0], 0, 1, 0);
 
         glTranslatef(0,0.1,0);
-        ///drawbody();
+        drawbody();
         glEnable(GL_TEXTURE_2D);
         glColor3f(1,1,1);
     glPopMatrix();
-    glutSwapBuffers();
     ///glDisable(GL_TEXTURE_2D);
     glutSolidSphere(0.02,30,30);
 
 
-    /*glPushMatrix();
+    glPushMatrix();
     glTranslatef(-0.147, 0.147,0);
-    glRotatef(angleX[1],0,1,0);
+    glRotatef(angleX[1],1,0,0);
     glTranslatef(-0.040, -0.120,0);
     drawleftupperhand();
         glPushMatrix();
@@ -436,7 +435,7 @@ void display()
             drawleftmhand();
             glPushMatrix();
                 glTranslatef(-0.007, -0.133,0);
-                glRotatef(angleX[3],0,1,0);
+                glRotatef(angleX[3],1,0,0);
                 glTranslatef(0.013, -0.120,0);
                 drawlefthand();
             glPopMatrix();
@@ -450,33 +449,33 @@ void display()
     drawrightupperhand();
         glPushMatrix();
         glTranslatef(0.040, -0.120,0);
-        glRotatef(angleX[5],0,1,0);
+        glRotatef(angleX[5],1,0,0);
         glTranslatef(-0.007, -0.100,0);
         drawrightmhand();
             glPushMatrix();
             glTranslatef(0.013, -0.140,0);
-            glRotatef(angleX[6],0,1,0);
+            glRotatef(angleX[6],1,0,0);
             glTranslatef(-0.000, -0.107,0);
             drawrighthand();
             glPopMatrix();
         glPopMatrix();
-    glPopMatrix();*/
+    glPopMatrix();
 
     glPushMatrix();
     glTranslatef(-0.100, -0.220,0);
     glScalef(0.7,0.7,0.7);
-    glRotatef(angleX[7],0,1,0);
+    glRotatef(angleX[7],1,0,0);
     glTranslatef(0.007, -0.273,0);
     drawleftupperleg();
         glPushMatrix();
         glTranslatef(-0.013, -0.247,0);
         glScalef(0.5,0.5,0.5);
-        glRotatef(angleX[8],0,1,0);
+        glRotatef(angleX[8],0,0,1);
         glTranslatef(0.000, -0.467,0);
         drawleftmleg();
             glPushMatrix();
             glTranslatef(0.007, -0.287,0);
-            glScalef(4,4,4);
+            glScalef(2,2,2);
             glRotatef(angleX[9],0,1,0);
             glTranslatef(-0.027, -0.233,0);
             drawleftleg();
@@ -487,18 +486,18 @@ void display()
     glPushMatrix();
     glTranslatef(0.087, -0.220,0);
     glScalef(0.7,0.7,0.7);
-    glRotatef(angleY[0],0,1,0);
+    glRotatef(angleY[0],1,0,0);
     glTranslatef(-0.020, -0.287,0);
     drawrightupperleg();
         glPushMatrix();
         glTranslatef(-0.000, -0.247,0);
         glScalef(0.5,0.5,0.5);
-        glRotatef(angleY[1],0,1,0);
+        glRotatef(angleY[1],0,0,1);
         glTranslatef(-0.013, -0.700,0);
         drawrightmleg();
             glPushMatrix();
             glTranslatef(-0.033, -0.460,0);
-            glScalef(4,4,4);
+            glScalef(1.5,1.5,1.5);
             glRotatef(angleY[2],0,1,0);
             glTranslatef(0.093, -0.287,0);
             drawrightleg();
@@ -506,9 +505,9 @@ void display()
         glPopMatrix();
     glPopMatrix();
 
-    /*glPushMatrix();
+    glPushMatrix();
     glTranslatef(0.007, 0.067,0);
-    glRotatef(angleY[3],0,1,0);
+    glRotatef(angleY[3],1,0,0);
     glTranslatef(0.000, 0.033,0);
     drawheadlower();
         glPushMatrix();
@@ -518,7 +517,7 @@ void display()
         drawheadm();
             glPushMatrix();
             glTranslatef(0.000, 0.173,0);
-            glRotatef(angleY[5],0,1,0);
+            glRotatef(angleY[5],0,0,1);
             glTranslatef(-0.000, -0.047,0);
             drawheadupper();
             glPopMatrix();
@@ -534,7 +533,7 @@ void display()
 
     glPushMatrix();
     glTranslatef(-0.000, 0.247,0);
-    glRotatef(angleY[7],0,1,0);
+    glRotatef(angleY[7],1,0,0);
     glTranslatef(0.007, -0.260,0);
     drawwaistupper();
         glPushMatrix();
@@ -549,7 +548,7 @@ void display()
             drawwaistlower();
             glPopMatrix();
         glPopMatrix();
-    glPopMatrix();*/
+    glPopMatrix();
 
     glutSwapBuffers();
 }
@@ -577,8 +576,8 @@ int main(int argc, char*argv[])
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
     glutKeyboardFunc(keyboard);
-    id1 = myTexture("C:/bone.jpg");
-    id2 = myTexture("C:/p1.jpg");
+    id1 = myTexture("data/bone.jpg");
+    id2 = myTexture("data/background.jpeg");
 
 
     ///myTexture("data/Medieval_bone0.jpg");

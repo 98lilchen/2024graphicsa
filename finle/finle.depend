@@ -43,10 +43,11 @@
 1718626352 c:\users\joy\desktop\finle\glm.h
 	<GL/glut.h>
 
-1718627361 source:c:\users\joy\desktop\finle\main.cpp
+1718675025 source:c:\users\joy\desktop\finle\main.cpp
 	<opencv/highgui.h>
 	<opencv/cv.h>
 	<GL/glut.h>
+	"CMP3_MCI.h"
 	<GL/glut.h>
 	"glm.h"
 	<stdio.h>
@@ -97,4 +98,9 @@
 	<GL/glut.h>
 	"glm.h"
 	<stdio.h>
+
+1718633771 c:\users\joy\desktop\finle\cmp3_mci.h
+	<string>
+	<windows.h>
+	<mmsystem.h>
 
