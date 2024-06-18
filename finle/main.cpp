@@ -420,7 +420,7 @@ void display()
         glColor3f(1,1,1);
     glPopMatrix();
     ///glDisable(GL_TEXTURE_2D);
-    glutSolidSphere(0.02,30,30);
+    ///glutSolidSphere(0.02,30,30);
 
 
     glPushMatrix();
@@ -430,12 +430,12 @@ void display()
     drawleftupperhand();
         glPushMatrix();
             glTranslatef(-0.027, -0.100,0);
-            glRotatef(angleX[2],0,1,0);
+            glRotatef(angleX[2],1,0,1);
             glTranslatef(0.000, -0.113,0);
             drawleftmhand();
             glPushMatrix();
                 glTranslatef(-0.007, -0.133,0);
-                glRotatef(angleX[3],1,0,0);
+                glRotatef(angleX[3],0,1,0);
                 glTranslatef(0.013, -0.120,0);
                 drawlefthand();
             glPopMatrix();
@@ -444,17 +444,17 @@ void display()
 
     glPushMatrix();
     glTranslatef(0.127, 0.160,0);
-    glRotatef(angleX[4],0,1,0);
+    glRotatef(angleY[1],1,0,0);
     glTranslatef(0.040, -0.127,0);
     drawrightupperhand();
         glPushMatrix();
         glTranslatef(0.040, -0.120,0);
-        glRotatef(angleX[5],1,0,0);
+        glRotatef(angleY[2],1,0,1);
         glTranslatef(-0.007, -0.100,0);
         drawrightmhand();
             glPushMatrix();
             glTranslatef(0.013, -0.140,0);
-            glRotatef(angleX[6],1,0,0);
+            glRotatef(angleY[3],0,1,0);
             glTranslatef(-0.000, -0.107,0);
             drawrighthand();
             glPopMatrix();
@@ -464,19 +464,19 @@ void display()
     glPushMatrix();
     glTranslatef(-0.100, -0.220,0);
     glScalef(0.7,0.7,0.7);
-    glRotatef(angleX[7],1,0,0);
+    glRotatef(angleX[4],1,0,1);
     glTranslatef(0.007, -0.273,0);
     drawleftupperleg();
         glPushMatrix();
         glTranslatef(-0.013, -0.247,0);
         glScalef(0.5,0.5,0.5);
-        glRotatef(angleX[8],0,0,1);
+        glRotatef(angleX[5],1,0,0);
         glTranslatef(0.000, -0.467,0);
         drawleftmleg();
             glPushMatrix();
             glTranslatef(0.007, -0.287,0);
             glScalef(2,2,2);
-            glRotatef(angleX[9],0,1,0);
+            glRotatef(angleX[6],1,0,0);
             glTranslatef(-0.027, -0.233,0);
             drawleftleg();
             glPopMatrix();
@@ -486,19 +486,19 @@ void display()
     glPushMatrix();
     glTranslatef(0.087, -0.220,0);
     glScalef(0.7,0.7,0.7);
-    glRotatef(angleY[0],1,0,0);
+    glRotatef(angleY[4],1,0,1);
     glTranslatef(-0.020, -0.287,0);
     drawrightupperleg();
         glPushMatrix();
         glTranslatef(-0.000, -0.247,0);
         glScalef(0.5,0.5,0.5);
-        glRotatef(angleY[1],0,0,1);
+        glRotatef(angleY[5],1,0,0);
         glTranslatef(-0.013, -0.700,0);
         drawrightmleg();
             glPushMatrix();
             glTranslatef(-0.033, -0.460,0);
             glScalef(1.5,1.5,1.5);
-            glRotatef(angleY[2],0,1,0);
+            glRotatef(angleY[6],1,0,0);
             glTranslatef(0.093, -0.287,0);
             drawrightleg();
             glPopMatrix();
@@ -507,17 +507,17 @@ void display()
 
     glPushMatrix();
     glTranslatef(0.007, 0.067,0);
-    glRotatef(angleY[3],1,0,0);
+    glRotatef(angleX[7],0,1,0);
     glTranslatef(0.000, 0.033,0);
     drawheadlower();
         glPushMatrix();
         glTranslatef(-0.007, 0.007,0);
-        glRotatef(angleY[4],0,1,0);
+        glRotatef(angleX[8],0,1,0);
         glTranslatef(0.007, 0.080,0);
         drawheadm();
             glPushMatrix();
             glTranslatef(0.000, 0.173,0);
-            glRotatef(angleY[5],0,0,1);
+            glRotatef(angleX[9],0,1,0);
             glTranslatef(-0.000, -0.047,0);
             drawheadupper();
             glPopMatrix();
@@ -526,14 +526,14 @@ void display()
 
     glPushMatrix();
     glTranslatef(-0.007, 0.160,0);
-    glRotatef(angleY[6],0,1,0);
+    glRotatef(angleY[7],0,1,0);
     glTranslatef(0.020, -0.107,0);
     drawbreast();
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(-0.000, 0.247,0);
-    glRotatef(angleY[7],1,0,0);
+    glRotatef(angleY[0],0, 1, 0);
     glTranslatef(0.007, -0.260,0);
     drawwaistupper();
         glPushMatrix();
